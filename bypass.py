@@ -10,7 +10,7 @@ from mitmproxy.tools.dump import DumpMaster as mitmdump
 from mitmproxy.options import Options
 import os
 import asyncio
-
+import socket
 
 MAIN_KEY = base64.b64decode('WWcmdGMlREV1aDYlWmNeOA==')
 MAIN_IV = base64.b64decode('Nm95WkRyMjJFM3ljaGpNJQ==')
@@ -123,12 +123,11 @@ class MajorLoginIntercept:
             final_content = Utils.decode_protobuf(binascii.hexlify(body), Uid)
 
 
-
 async def run_proxy():
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
-    host = os.environ.get("HOST", "0.0.0.0")
+    host = socket.gethostbyname(socket.gethostname())
     port = os.environ.get("PORT", "8000")
     print(f"server is running at port: {host}:{port}")
     options = Options(listen_host="0.0.0.0", listen_port=int(port))
