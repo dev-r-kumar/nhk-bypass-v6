@@ -128,8 +128,9 @@ async def run_proxy():
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
+    host = os.environ.get("HOST", "0.0.0.0")
     port = os.environ.get("PORT", "8000")
-    print(f"server is running at port: {port}")
+    print(f"server is running at port: {host}:{port}")
     options = Options(listen_host="0.0.0.0", listen_port=int(port))
     m = mitmdump(options, loop=loop)
 
