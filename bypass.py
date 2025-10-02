@@ -10,9 +10,7 @@ from mitmproxy.tools.dump import DumpMaster as mitmdump
 from mitmproxy.options import Options
 import os
 import asyncio
-from keep_alive import keep_alive 
 
-keep_alive() # treat script as web app and put server busy and online 
 
 MAIN_KEY = base64.b64decode('WWcmdGMlREV1aDYlWmNeOA==')
 MAIN_IV = base64.b64decode('Nm95WkRyMjJFM3ljaGpNJQ==')
